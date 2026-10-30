@@ -1,0 +1,256 @@
+
+ 
+Conditions, Loops, and Functions
+ 
+
+ 
+1. Conditional Statements
+ 
+if-else:
+ 
+if [ $age -ge 18 ]; then
+  echo "Adult"
+else
+  echo "Minor"
+fi
+ 
+ 
+ 
+2. File Checks
+ 
+if [ -f myfile.txt ]; then
+  echo "File exists"
+fi
+ 
+ 
+3. Loops
+ 
+for loop:
+ 
+for i in 1 2 3; do
+  echo "Count $i"
+done
+ 
+while loop:
+ 
+i=1
+while [ $i -le 5 ]; do
+  echo "i=$i"
+  ((i++))
+done
+ 
+ 
+ 
+4. Functions
+ 
+greet() {
+  echo "Hello $1"
+}
+ 
+greet Sam
+ 
+ 
+5. Command Line Arguments
+ 
+echo "Script name: $0"
+echo "First arg: $1"
+ 
+ 
+ 
+ 
+---
+ 
+💡 Hands-on Practice
+ 
+Script to print numbers using loop
+ 
+Script to backup a file using function
+ 
+Script to accept arguments (ex: backup.sh file1.txt)
+ 
+ 
+ 
+---
+ 
+🗓️ Real-time DevOps Scripts + Tools
+ 
+✅ Topics to Cover:
+ 
+1. Useful Commands in Scripting
+ 
+grep, awk, sed, cut, sort, tr, wc, head, tail
+ 
+Sample:
+ 
+ps -ef | grep nginx
+ 
+ 
+ 
+2. Automation Scripts
+ 
+Log cleanup script:
+ 
+find /var/log -type f -name "*.log" -mtime +7 -exec rm -f {} \;
+ 
+Disk usage alert:
+ 
+disk=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+if [ $disk -gt 80 ]; then
+  echo "Disk usage is high!"
+fi
+ 
+ 
+ 
+3. Scheduling with cron
+ 
+Add cron job:
+ 
+crontab -e
+ 
+Example:
+ 
+0 1 * * * /home/ec2-user/backup.sh
+ 
+ 
+ 
+4. Debugging Script
+ 
+bash -x myscript.sh
+ 
+ 
+ 
+ 
+---
+ 
+💡 Hands-on Practice
+ 
+Script to check memory and alert if < threshold
+ 
+Script to search and replace text in a file using sed
+ 
+Script to archive /var/log files weekly
+ 
+ 
+ 
+---
+ 
+🎓  Assignments for Students:
+ 
+Create a script to ping a list of servers and log failures.
+ 
+Create a script to automate Nginx installation.
+ 
+Write a loop to read a file line-by-line and process each line.
+
+
+___________________________
+
+
+## 🕒 : Cron Jobs in Linux
+
+### ✅ What is a Cron Job?
+
+A **cron job** is a time-based job scheduler in Unix/Linux. It's used to run commands or scripts automatically at scheduled times and intervals.
+sudo yum install -y cronie
+
+### ✅ Cron Syntax
+
+```
+* * * * * /path/to/script.sh
+│ │ │ │ │
+│ │ │ │ └─ Day of week (0 - 7) (Sunday=0 or 7)
+│ │ │ └─── Month (1 - 12)
+│ │ └───── Day of month (1 - 31)
+│ └─────── Hour (0 - 23)
+└───────── Minute (0 - 59)
+```
+
+---
+
+### 🔧 How to create/edit a cron job
+
+```bash
+crontab -e         # Edit user's cron table
+crontab -l         # List current user's cron jobs
+crontab -r         # Remove all user's cron jobs
+```
+
+---
+
+### 🧪 Example Cron Jobs
+
+| Cron Expression  | Description                        |
+| ---------------- | ---------------------------------- |
+| `0 * * * *`      | Every hour at minute 0             |
+| `0 2 * * *`      | Every day at 2 AM                  |
+| `*/5 * * * *`    | Every 5 minutes                    |
+| `0 0 * * 0`      | Every Sunday at midnight           |
+| `0 9-17 * * 1-5` | Every hour between 9–5 on weekdays |
+
+---
+
+### 📝 Example: Run a script every 10 minutes
+
+```bash
+*/10 * * * * /home/ec2-user/backup.sh
+```
+
+---
+
+## 🐚 Part 2: Shell Scripting Essentials for Students
+
+### 📌 Basics to Teach
+
+1. **Shebang**
+   `#!/bin/bash` → Indicates which shell to use.
+
+2. **Variables**
+
+   ```bash
+   name="DevOps"
+   echo "Hello $name"
+   ```
+
+3. **Conditions**
+
+   ```bash
+   if [ $a -gt 10 ]; then echo "Large"; fi
+   ```
+
+4. **Loops**
+
+   ```bash
+   for i in {1..5}; do echo $i; done
+   ```
+
+5. **Functions**
+
+   ```bash
+   greet() { echo "Hi $1"; }
+   greet "Sam"
+   ```
+
+6. **User Input**
+
+   ```bash
+   read -p "Enter your name: " name
+   echo "Welcome $name"
+   ```
+
+7. **Argument Passing**
+
+   ```bash
+   echo "Script name: $0"
+   echo "First arg: $1"
+   ```
+
+8. **Environment Variables**
+
+   ```bash
+   export MY_VAR="value"        # Temporary
+   echo 'export MY_VAR="value"' >> ~/.bashrc  # Permanent
+   ```
+
+---
+
+
