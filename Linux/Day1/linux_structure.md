@@ -13,6 +13,7 @@ Core components of a Linux Machine
 | Hardware (CPU, RAM, Disk, Network, Peripherals)   |
 +----------------------------------------------------+
 
+<img width="515" height="364" alt="image" src="https://github.com/user-attachments/assets/395f0c38-7691-4a8e-90f4-76efbc4d7777" />
 
 (a) Hardware Layer
 
